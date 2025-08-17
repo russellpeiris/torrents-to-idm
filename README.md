@@ -13,7 +13,7 @@ This project allows you to download torrent files and transfer them to Internet 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/russellpeiris/torrents-to-idm.git
+   git clone https://github.com/yourusername/torrents-to-idm.git
    ```
 2. Install dependencies:
    ```bash
