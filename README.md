@@ -7,7 +7,7 @@ This project allows you to download torrent files and transfer them to Internet 
 - Integrate with IDM for high-speed downloads
 
 ## Requirements
-- Node.js
+- Node.js (version 14.0 or higher)
 - Internet Download Manager (IDM)
 
 ## Installation
