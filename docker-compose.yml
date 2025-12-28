@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  torrents-to-idm:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Optional: Add AWS S3 configuration if using S3 storage
+      # - AWS_REGION=us-east-1
+      # - AWS_S3_BUCKET=your-bucket-name
+      # - AWS_ACCESS_KEY_ID=your-access-key
+      # - AWS_SECRET_ACCESS_KEY=your-secret-key
+    restart: unless-stopped
+    # Resource limits for cost control
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    volumes:
+      # Optional: Persist torrent data
+      - torrent-data:/app/.cache
+    networks:
+      - torrent-network
+
+networks:
+  torrent-network:
+    driver: bridge
+
+volumes:
+  torrent-data:
