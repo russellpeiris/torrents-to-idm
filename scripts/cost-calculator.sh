@@ -3,6 +3,15 @@
 # AWS Cost Calculator for Torrents to IDM
 # Helps estimate monthly costs based on usage patterns
 
+# Check if bc is installed
+if ! command -v bc &> /dev/null; then
+    echo "Error: 'bc' command not found. Please install it first."
+    echo "  Ubuntu/Debian: sudo apt-get install bc"
+    echo "  macOS: brew install bc"
+    echo "  RHEL/CentOS: sudo yum install bc"
+    exit 1
+fi
+
 echo "💰 AWS Cost Calculator for Torrents to IDM"
 echo "==========================================="
 echo ""

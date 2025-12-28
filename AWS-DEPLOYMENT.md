@@ -350,9 +350,24 @@ aws ecr delete-repository \
 ## Security Considerations
 
 1. **Restrict Access**: Update the security group to allow only your IP address
+   ```bash
+   # Get your public IP
+   MY_IP=$(curl -s https://checkip.amazonaws.com)
+   
+   # Update security group to allow only your IP
+   aws ec2 authorize-security-group-ingress \
+     --group-id sg-xxx \
+     --protocol tcp \
+     --port 3000 \
+     --cidr $MY_IP/32 \
+     --region $AWS_REGION
+   ```
+
 2. **Use HTTPS**: Consider adding ACM certificate to ALB for HTTPS
 3. **VPN/Bastion**: For better security, deploy in private subnet with VPN access
 4. **IAM Roles**: Never hardcode AWS credentials; use IAM roles (already configured in template)
+5. **Regular Updates**: Keep Docker images and dependencies updated
+6. **Audit Logs**: Enable CloudTrail for AWS API auditing
 
 ## Advanced: Auto-Shutdown After Idle
 

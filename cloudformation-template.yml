@@ -74,7 +74,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub 'torrents-to-idm-${AWS::AccountId}'
+      BucketName: !Sub 'torrents-to-idm-${AWS::AccountId}-${AWS::StackName}'
       LifecycleConfiguration:
         Rules:
           - Id: DeleteOldFiles
@@ -96,7 +96,8 @@ Resources:
         - IpProtocol: tcp
           FromPort: 3000
           ToPort: 3000
-          CidrIp: 0.0.0.0/0  # Consider restricting this to your IP
+          CidrIp: 0.0.0.0/0  # WARNING: Open to all. Restrict to your IP in production!
+          Description: HTTP access from anywhere - consider restricting to your IP
       SecurityGroupEgress:
         - IpProtocol: -1
           CidrIp: 0.0.0.0/0
@@ -183,7 +184,7 @@ Resources:
       TaskDefinition: !Ref TaskDefinition
       DesiredCount: !Ref DesiredCount
       LaunchType: FARGATE
-      PlatformVersion: LATEST
+      PlatformVersion: '1.4.0'  # Use specific version for predictable behavior
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED

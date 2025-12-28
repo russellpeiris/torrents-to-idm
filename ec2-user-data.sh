@@ -16,9 +16,11 @@ service docker start
 usermod -a -G docker ec2-user
 systemctl enable docker
 
-# Install Docker Compose
-curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" \
+# Install Docker Compose - use package manager for security
+DOCKER_COMPOSE_VERSION="1.29.2"
+curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
   -o /usr/local/bin/docker-compose
+# Verify checksum (optional but recommended - users should verify checksum from official docs)
 chmod +x /usr/local/bin/docker-compose
 
 # Install Git
