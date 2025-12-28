@@ -28,7 +28,7 @@ yum install -y git
 
 # Clone repository
 cd /home/ec2-user
-git clone -b copilot/optimize-torrent-downloads-setup https://github.com/russellpeiris/torrents-to-idm.git
+git clone https://github.com/russellpeiris/torrents-to-idm.git
 cd torrents-to-idm
 
 # Build and run with Docker
