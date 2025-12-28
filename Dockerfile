@@ -3,6 +3,9 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 
@@ -13,6 +16,9 @@ RUN npm ci --only=production
 FROM node:18-alpine
 
 WORKDIR /app
+
+# Install runtime dependencies for webtorrent-hybrid
+RUN apk add --no-cache python3
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
