@@ -9,7 +9,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
       # Optional: Add AWS S3 configuration if using S3 storage
-      # - AWS_REGION=us-east-1
+      # - AWS_REGION=ap-south-1
       # - AWS_S3_BUCKET=your-bucket-name
       # - AWS_ACCESS_KEY_ID=your-access-key
       # - AWS_SECRET_ACCESS_KEY=your-secret-key

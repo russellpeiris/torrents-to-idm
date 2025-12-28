@@ -43,7 +43,7 @@ This is the most cost-effective option for running the service.
 
 ```bash
 # Set your AWS region
-export AWS_REGION=us-east-1
+export AWS_REGION=ap-south-1
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 
 # Create ECR repository

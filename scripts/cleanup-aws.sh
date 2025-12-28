@@ -5,7 +5,7 @@
 
 set -e
 
-AWS_REGION=${1:-us-east-1}
+AWS_REGION=${1:-ap-south-1}
 STACK_NAME="torrents-to-idm-stack"
 REPOSITORY_NAME="torrents-to-idm"
 

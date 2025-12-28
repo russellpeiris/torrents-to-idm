@@ -5,7 +5,7 @@
 
 set -e
 
-AWS_REGION=${1:-us-east-1}
+AWS_REGION=${1:-ap-south-1}
 CLUSTER_NAME="torrents-to-idm-cluster"
 SERVICE_NAME="torrents-to-idm-service"
 STACK_NAME="torrents-to-idm-stack"
