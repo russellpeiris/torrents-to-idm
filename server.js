@@ -2,7 +2,7 @@ import Express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import mime from 'mime-types';
-import WebTorrent from 'webtorrent';
+import WebTorrent from 'webtorrent-hybrid';
 
 const app = Express();
 app.use(cors());
