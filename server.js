@@ -83,18 +83,20 @@ app.post('/add', async (req, res) => {
   try {
     const resource = (req.body.resource || '').trim();
     if (!resource) return res.status(400).json({ error: 'Provide magnet URI or .torrent URL as "resource"' });
-    const t = await ensureTorrent(resource);
-    const files = t.files.map((f, i) => ({
-      index: i,
-      name: f.name,
-      length: f.length,
-      path: `/d/${t.infoHash}/${i}/${encodeURIComponent(f.name)}`
-    }));
+    
+    // Start adding torrent (don't wait for it to be ready)
+    ensureTorrent(resource).catch(err => console.error('Torrent add error:', err));
+    
+    // Respond immediately
     res.format({
-      json: () => res.json({ infoHash: t.infoHash, name: t.name, length: t.length, files }),
+      json: () => res.json({ message: 'Torrent is being added. Check /torrents for status.' }),
       html: () => {
-        const list = files.map(f => `<li><a href="${f.path}">${f.name}</a> (${f.length} bytes)</li>`).join('');
-        res.send(`<h2>${t.name}</h2><ul>${list}</ul><p>Or view <a href="/torrents">/torrents</a></p>`);
+        res.send(`
+          <h2>✅ Torrent added!</h2>
+          <p>The torrent is connecting to peers...</p>
+          <p><a href="/torrents">View all torrents</a> or <a href="/">Add another</a></p>
+          <script>setTimeout(() => window.location.href='/torrents', 2000);</script>
+        `);
       }
     });
   } catch (err) {
